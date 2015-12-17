@@ -17,7 +17,7 @@ class rooms:
         	"battle" : False,
         	"battle_props" : None
     	},
-   	 `
+   	 
     	'graveyard' : {
         	"greeting" : """You are now dead. Welcome to the graveyard!""",
         	"option_text" : """ """,
@@ -32,7 +32,7 @@ class rooms:
     	},
 
     	'A' : {
-        	"greeting" : """While the terrorists hear you struggling, you are tortured and loose 30 HP. They leave and accidently forgot one AK47."""
+        	"greeting" : """While the terrorists hear you struggling, you are tortured and loose 30 HP. They leave and accidently forgot one AK47.""",
         	"option_text" : """Proceed to room B by typing B.""",
         	"next" : ['B'],
         	"found_weapons" : ['AK-47'],
@@ -42,17 +42,17 @@ class rooms:
     	},
 
     	'B' : {
-        	"greeting" : """You choose to examine the room and see a knife on the floor by your foot, which you use to cut the rope."""
+        	"greeting" : """You choose to examine the room and see a knife on the floor by your foot, which you use to cut the rope.""",
         	"option_text" : """Search for a supplies(C) or search for an exit(D).""",
         	"next" : ['C', 'D'],
-        	"found_weapons" : None
+        	"found_weapons" : None,
         	"health" : 0,
         	"battle" : False,
         	"battle_props" : None
     	},
 
     	'C' : {
-        	"greeting" : """You are looking for supplies, but take too long and get caught. You have been shot in the back and died."""
+        	"greeting" : """You are looking for supplies, but take too long and get caught. You have been shot in the back and died.""",
         	"option_text" : """ """,
         	"next" : ['D', 'E', 'F'],
         	"found_weapons" : None,
@@ -62,7 +62,7 @@ class rooms:
     	},
 
     	'D' : {
-        	"greeting" : """You have found a way through the air vent. You see a room, should you drop down or not. """
+        	"greeting" : """You have found a way through the air vent. You see a room, should you drop down or not.""",
         	"option_text" : """Choose to drop down(E) or Continue Past(F).""",
         	"next" : ['E', 'F'],
         	"found_weapons" : None,
@@ -110,9 +110,9 @@ class rooms:
     	},
 
     	'H' : {
-        	"greeting" : """You have """,
-        	"option_text" : """ """,
-        	"next" : ['I', 'J'],
+        	"greeting" : """You have walked past the terrorist. On the ground you pick up your USP-S.""",
+        	"option_text" : """You can either go around trying to find more loot(F) or try to find an exit(I).""",
+        	"next" : ['F', 'I'],
         	"found_weapons" : None,
         	"health" : 0,
         	"battle" : False,
@@ -120,14 +120,11 @@ class rooms:
     	},
 
     	'I' : {
-        	"greeting" : """Yay! you found a plate of delicious brownies!
-**stomach growls** Or maybe, not so delicious.
-You then realize that the brownies were stale and moldy.
-20 health lost.""",
-        	"option_text" : """ """,
-        	"next" : ['H', 'J'],
-        	"found_weapons" : -1,
-        	"health" : -20,
+        	"greeting" : """You find a grenade that you can use in your fight to get out. Too bad when you touch it explodes and you are left wounded.""",
+        	"option_text" : """If you don't die, keep moving forward into the next room.(J)""",
+        	"next" : ['J'],
+        	"found_weapons" : None,
+        	"health" : 0,
         	"battle" : False,
         	"battle_props" : None
     	},
@@ -153,38 +150,24 @@ You then realize that the brownies were stale and moldy.
 
 class arsenal:
 	weapon = {
-    	'sword' : {
-        	"label" : "Steel Sword",
-        	"damage" : -20,
-        	"ammo" : None,
+    	'AK47' : {
+        	"label" : "Ak-47",
+        	"damage" : -25,
+        	"ammo" : 20,
         	"found" : False
     	},
    	 
-    	'stick' : {
-        	"label" : "Pointed Stick",
-        	"damage" : -5,
-        	"ammo" : None,
-        	"found" : False
-    	},
-   	 
-    	'bow' : {
-        	"label" : "Bow and Arrow",
-        	"damage" : -20,
-        	"ammo" : 5,
-        	"found" : False
-    	},
-   	 
-    	'waraxe' : {
-        	"label" : "War Axe",
-        	"damage" : -40,
-        	"ammo" : None,
-        	"found" : False
-    	},
-   	 
-    	'hand' : {
-        	"label" : "Punch with fist",
+    	'M4A4' : {
+        	"label" : "M4A4",
         	"damage" : -15,
-        	"ammo" : None,
-        	"found" : True
-    	}
+        	"ammo" : 15,
+        	"found" : False
+    	},
+   	 
+    	'usp' : {
+        	"label" : "USP-S",
+        	"damage" : -10,
+        	"ammo" : 20,
+        	"found" : False
+    	},
 	}

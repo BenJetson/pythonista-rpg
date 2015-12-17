@@ -11,6 +11,7 @@ current_room = rooms.room['start']
 prev_room = {}
 health = 100
 playing = True
+dead = False
 
 # To-Do List:
 """
@@ -108,9 +109,9 @@ def get_usable_weapons(weapons):
     
     return usable_weapons
     
-def battle(battle, weapons):
+def battle(battle, weapons, health):
     
-    # should return array of [whether won or not, health left]
+    # should return array of [whether won or not, health left] 
     
     battling = True
     usable_weapons = get_usable_weapons(weapons)
@@ -124,15 +125,32 @@ def battle(battle, weapons):
         
         battle['monster_health'] += weapon['damage']
         
-        print("battling in progress...")
-        # health  -= 200
+        print("battling in progress...", battle['monster_health'], health)
         
-        won = True
-        battling = False
+        health += battle['monster_weapon']['damage']
         
-    if won:
-        return True
-
+        if health < 0 and battle['monster_health'] > 0:
+            print(1)
+            won = False
+            Battling = False
+            break
+        elif health > 0 and battle['monster_health'] < 0:
+            print(2)
+            won = True
+            battling = False
+            break
+        elif health < 0 and battle['monster_health'] < 0:
+            print(3)
+            won = False
+            battling = False
+            break
+        # else:
+            # print(4)
+            # battling = False
+            # won = False
+        
+        
+    return [won, health]
 def next_room(option_text, options):
     
     while True:
@@ -161,31 +179,45 @@ def weapon_handler(found, existing):
                 existing[item]['found'] = False;
     else:
         return existing
+
+def splasher(which):
     
+    print()
+    print(splashes.splash[which])
+    print()
+
+    
+splasher('title')
 while playing:
-    
-    
-    # Handle health
-    health = health_handler(health, current_room['health'])
-    current_room = rooms.room['graveyard'] if health <= 0 else current_room # Sends you to graveyard if you're dead.
-    
-    # Handle adding weapons to arsenal
-    if current_room['found_weapons'] != None:
-        arsenal.weapon = weapon_handler(current_room['found_weapons'], arsenal.weapon)
-    
-    # Outputs the greeting for the room and remaining health to the console.
-    room_greeter(current_room, health)
-    
-    # If current room has battle, run battle handler.
-    #   Otherwise, ask what room to proceed to.
-    if current_room['battle']:
-        won = battle(current_room['battle_props'], arsenal.weapon)
+    while not dead:
         
-        if won:
+        # Handle health
+        health = health_handler(health, current_room['health'])
+        current_room = rooms.room['graveyard'] if health <= 0 else current_room # Sends you to graveyard if you're dead.
+        
+        # Handle adding weapons to arsenal
+        if current_room['found_weapons'] != None:
+            arsenal.weapon = weapon_handler(current_room['found_weapons'], arsenal.weapon)
+        
+        # Outputs the greeting for the room and remaining health to the console.
+        room_greeter(current_room, health)
+        
+        # If current room has battle, run battle handler.
+        #   Otherwise, ask what room to proceed to.
+        if current_room['battle']:
+            battle_results = battle(current_room['battle_props'], arsenal.weapon, health)
+            
+            won = battle_results[0]
+            health = battle_results[1]
+            
+            if won:
+                prev_room = current_room
+                current_room = rooms.room[current_room['battle_props']['on_defeat']]
+            else:
+                prev_room = current_room
+                current_room = rooms.room['graveyard']
+        else:
             prev_room = current_room
-            current_room = rooms.room[current_room['battle_props']['on_defeat']]
-    else:
-        prev_room = current_room
-        current_room = rooms.room[next_room(current_room['option_text'], current_room['next'])]
-        
-        
+            current_room = rooms.room[next_room(current_room['option_text'], current_room['next'])]
+            
+            
