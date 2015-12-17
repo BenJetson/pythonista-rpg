@@ -4,9 +4,7 @@ from dictionaries import rooms
     # Gets the room dictionaries.
 from dictionaries import arsenal
     # Gets the weapon dictionaries.
-from time import sleep
-	# Used for delays during battle scenes
-
+    
 # Sets initial values.
 
 current_room = rooms.room['start']
@@ -128,8 +126,7 @@ def battle(battle, weapons):
         
         print("battling in progress...")
         # health  -= 200
-        sleep(3)
-		
+        
         won = True
         battling = False
         
@@ -183,14 +180,12 @@ while playing:
     #   Otherwise, ask what room to proceed to.
     if current_room['battle']:
         won = battle(current_room['battle_props'], arsenal.weapon)
-
+        
         if won:
             prev_room = current_room
             current_room = rooms.room[current_room['battle_props']['on_defeat']]
     else:
         prev_room = current_room
         current_room = rooms.room[next_room(current_room['option_text'], current_room['next'])]
-		
-
         
         
