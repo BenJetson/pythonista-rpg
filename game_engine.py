@@ -4,7 +4,11 @@ from dictionaries import rooms
     # Gets the room dictionaries.
 from dictionaries import arsenal
     # Gets the weapon dictionaries.
-    
+from time import sleep
+	# Used for delays during battle scenes.
+from random import randint
+	# Random integers used for battle.
+
 # Sets initial values.
 
 current_room = rooms.room['start']
@@ -78,7 +82,7 @@ def choose_weapon(weapons, monster_name):
         for weapon in weapons:
             id += 1
             print(str(id) + ". " + weapons[weapon]['label'] + ", which deals " + str(weapons[weapon]['damage']).lstrip("-") + " damage per hit.")
-        
+			
         print()
         print("What do you choose?")
         choice = input("> ")
@@ -86,7 +90,7 @@ def choose_weapon(weapons, monster_name):
             print("You chose the " + id_key[int(choice)-1])
             return id_key[int(choice)-1]
         else:
-            print("Invalid.")
+            print("Invalid slection!")
 
 def get_usable_weapons(weapons):
     
@@ -123,10 +127,11 @@ def battle(battle, weapons):
         weapon = usable_weapons[choose_weapon(usable_weapons, battle['monster_name'])]
         
         battle['monster_health'] += weapon['damage']
-        
+			
         print("battling in progress...")
         # health  -= 200
-        
+        sleep(3)
+		
         won = True
         battling = False
         
@@ -180,12 +185,14 @@ while playing:
     #   Otherwise, ask what room to proceed to.
     if current_room['battle']:
         won = battle(current_room['battle_props'], arsenal.weapon)
-        
+
         if won:
             prev_room = current_room
             current_room = rooms.room[current_room['battle_props']['on_defeat']]
     else:
         prev_room = current_room
         current_room = rooms.room[next_room(current_room['option_text'], current_room['next'])]
+		
+
         
         
