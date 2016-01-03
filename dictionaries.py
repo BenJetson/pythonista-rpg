@@ -109,11 +109,11 @@ You have found a way through the air vent. You see a room, you wonder to yoursel
 
     	'E' : {
         	"greeting" : """
-You drop down into the room and find and M4A4 with ammo in it. Suddenly you hear a noise.
+You drop down into the room and find and M4 with ammo in it. Suddenly you hear a noise.
 			""",
         	"option_text" : """Press F to continue...""",
         	"next" : ['F'],
-        	"found_weapons" : ['M4A4'],
+        	"found_weapons" : ['M4'],
         	"health" : 0,
         	"battle" : False,
         	"battle_props" : None
@@ -153,7 +153,7 @@ Good job defeating the terrorist, you have found a health pack which restores 50
 
     	'H' : {
         	"greeting" : """
-You have walked past the terrorist. On the ground you pick up your USP-S.
+You have walked past the terrorist. On the ground you pick up your USP.
 			""",
         	"option_text" : """You can either go around trying to find more loot (F) or try to find an exit (I).""",
         	"next" : ['F', 'I'],
@@ -218,8 +218,8 @@ class arsenal:
         	"found" : False
     	},
    	 
-    	'M4A4' : {
-        	"label" : "M4A4",
+    	'M4' : {
+        	"label" : "M4",
         	"damage" : -15,
         	"ammo" : 15,
         	"found" : False
