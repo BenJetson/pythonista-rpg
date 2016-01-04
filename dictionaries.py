@@ -7,7 +7,7 @@ class splashes:
  | |_| |/ _ \/ __| __/ _` |/ _` |/ _ \ |  _| / __|/ __/ _` | '_ \ / _ \ 
  |  _  | (_) \__ \ || (_| | (_| |  __/ | |___\__ \ (_| (_| | |_) |  __/ 
  |_| |_|\___/|___/\__\__,_|\__, |\___| |_____|___/\___\__,_| .__/ \___| 
-                          |___/                           |_|           """,
+                           |___/                           |_|           """,
 
         'instructions' : """
 At this time, there are no instructions.
@@ -53,7 +53,7 @@ You wake up in a small locked room. Everything feels hazy... you remember that y
     	},
    	 
     	'graveyard' : {
-        	"greeting" : """Due to the mistakes you made during your life, you have now died. You have lost the game. Try again.""",
+        	"greeting" : """You were shot in the back by terrorists. Try again!""",
         	"option_text" : """ """,
         	"next" : [],
         	"found_weapons" : None,
@@ -67,7 +67,8 @@ You wake up in a small locked room. Everything feels hazy... you remember that y
 
     	'A' : {
         	"greeting" : """
-While the terrorists hear you struggling, you are tortured and lose 15 HP. They leave, but accidently leave behind one of their AK-47's.
+While the terrorists hear you struggling, you are tortured and 
+lose 15 HP. They leave, but accidently leave behind one of their AK-47's.
 			""",
         	"option_text" : """Proceed to room B by typing B.""",
         	"next" : ['B'],
@@ -115,7 +116,7 @@ You have found a way through the air vent. You see a room, you wonder to yoursel
 
     	'E' : {
         	"greeting" : """
-You drop down into the room and find and M4 with ammo in it. Suddenly you hear a noise.
+You drop down into the room and find an M4 with ammo in it. Suddenly you hear a noise.
 			""",
         	"option_text" : """Press F to continue...""",
         	"next" : ['F'],
@@ -221,8 +222,7 @@ class arsenal:
 	weapon = {
     	'AK-47' : {
         	"label" : "AK-47",
-        	"damage-max" : -50,
-			
+        	"damage" : -50,
         	"ammo" : 20,
         	"found" : False
     	},
