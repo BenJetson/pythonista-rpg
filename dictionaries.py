@@ -67,12 +67,12 @@ You wake up in a small locked room. Everything feels hazy... you remember that y
 
     	'A' : {
         	"greeting" : """
-While the terrorists hear you struggling, you are tortured and lose 30 HP. They leave and accidently forgot one of their AK-47's.
+While the terrorists hear you struggling, you are tortured and lose 15 HP. They leave, but accidently leave behind one of their AK-47's.
 			""",
         	"option_text" : """Proceed to room B by typing B.""",
         	"next" : ['B'],
         	"found_weapons" : ['AK-47'],
-        	"health" : -30,
+        	"health" : -15,
         	"battle" : False,
         	"battle_props" : None
     	},
@@ -137,11 +137,11 @@ A Terrorist enters the room and you have no choice but to fight him.
         	"battle_props" : {
             	"on_defeat" : 'G',
             	"monster_name" : 'A Terrorist',
-            	"monster_health" : 200,
-                "monster_max_health" : 200,
+            	"monster_health" : 100,
+                "monster_max_health" : 100,
             	"monster_weapon" : {
                 	"name" : "AK-47",
-                	"damage" : -35,
+                	"damage" : -25,
             	}
         	}
     	},
@@ -198,7 +198,7 @@ You can see the exit! Just a little more... BOOM! A huge terrorist boss suited i
                 "monster_max_health" : 150,
             	"monster_weapon" : {
                 	"name" : "MachineGun",
-                	"damage" : -30,
+                	"damage" : -10,
             	}
         	}
 		},
@@ -221,21 +221,22 @@ class arsenal:
 	weapon = {
     	'AK-47' : {
         	"label" : "AK-47",
-        	"damage" : -25,
+        	"damage-max" : -50,
+			
         	"ammo" : 20,
         	"found" : False
     	},
    	 
     	'M4' : {
         	"label" : "M4",
-        	"damage" : -15,
+        	"damage" : -40,
         	"ammo" : 15,
         	"found" : False
     	},
    	 
     	'USP' : {
         	"label" : "USP",
-        	"damage" : -10,
+        	"damage" : -30,
         	"ammo" : 20,
         	"found" : False
     	},
@@ -249,7 +250,7 @@ class arsenal:
 		
 		'Fist' : {
         	"label" : "Your Fists of Fury",
-        	"damage" : -5,
+        	"damage" : -20,
         	"ammo" : None,
         	"found" : False
     	},	
