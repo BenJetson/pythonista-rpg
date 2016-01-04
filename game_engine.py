@@ -37,7 +37,7 @@ def show_health(health):
     
 def room_greeter(current_room, health):
     print(current_room['greeting'])
-    # show_health(health)
+    show_health(health)
     print(current_room['option_text'])
 
 def choose_weapon(weapons, monster_name):
@@ -291,7 +291,9 @@ while playing:
     
     while not dead:
         
-        # Health handling previously done here.
+        # Handle health
+        health = health_handler(health, current_room['health'])
+        current_room = rooms.room['graveyard'] if health <= 0 else current_room # Sends you to graveyard if you're dead.
         
         # Handle adding weapons to arsenal
         if current_room['found_weapons'] != None:
@@ -300,14 +302,6 @@ while playing:
         # Outputs the greeting for the room and remaining health to the console.
         room_greeter(current_room, health)
         
-        # Handle health
-        health = health_handler(health, current_room['health'])
-        show_health(health)
-        
-        if health <= 0:
-            dead = True
-            break
-            
         # If current room has battle, run battle handler.
         #   Otherwise, ask what room to proceed to.
         if current_room['battle']:

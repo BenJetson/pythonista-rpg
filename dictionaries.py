@@ -241,7 +241,7 @@ class arsenal:
     	},
 		
     	'MachineGun' : {
-        	"label" : "MachineGun",
+        	"label" : "Machine Gun",
         	"damage" : -30,
         	"ammo" : 200,
         	"found" : False
