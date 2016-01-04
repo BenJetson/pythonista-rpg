@@ -4,6 +4,8 @@ from dictionaries import rooms
     # Gets the room dictionaries.
 from dictionaries import arsenal
     # Gets the weapon dictionaries.
+import random
+
     
 # Sets initial values.
 
@@ -14,7 +16,7 @@ playing = True
     - Functions
         - Play - Holds main game logic - nothing else. 
     - Output
-        - Add descriptions for all rooms.
+         Add descriptions for all rooms.
         - Add ASCII art to intro/exit/start/death/game-over/etc.
     - Rubric & Assignment Considerations
         Entry Event  - https://s3.amazonaws.com/echo_files/20140507/_1399426771_pythonista_entry_event.pdf 
@@ -159,7 +161,7 @@ def battle(battle, weapons, health):
         weapon = usable_weapons[choose_weapon(usable_weapons, battle['monster_name'])]
         
         # Monster is attacked with weapon
-        monster_health = health_handler(monster_health, weapon['damage'], battle['monster_max_health'])
+        monster_health = health_handler(monster_health, (abs(random.randint(weapon['damage']-5, weapon['damage']+5)) * -1), battle['monster_max_health'])
         
         # print("battling in progress...", monster_health, health)
         
