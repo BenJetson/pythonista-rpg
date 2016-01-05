@@ -64,7 +64,7 @@ def choose_weapon(weapons, monster_name):
         
         for weapon in weapons:
             id += 1
-            print(str(id) + ". " + weapons[weapon]['label'] + ", which deals " + str(weapons[weapon]['damage']).lstrip("-") + " damage per hit.")
+            print(str(id) + ". " + weapons[weapon]['label'] + ", which deals " + str(weapons[weapon]['damage']+5).lstrip("-") + " to " + str(weapons[weapon]['damage']-5).lstrip("-") + " damage per hit.")
         
         print()
         print("What do you choose?")
