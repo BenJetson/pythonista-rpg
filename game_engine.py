@@ -149,6 +149,7 @@ def battle(battle, weapons, health):
         print("* " + (battle['monster_name'] + " attacks you with the " + battle['monster_weapon']['name'] + ".").center(56, " ") + " *")
         print("* " + ("You lose " + str(battle['monster_weapon']['damage'] * -1) + " health.").center(56, " ") + " *")
         print("* " + (str(health) + " health remaining.").center(56, " ") + " *")
+        print("* " + (battle['monster_name'] + " has " + str(monster_health) + " HP remaining.").center(56, " ") + " *")
         print("*" * 60)
         
         # Checks to see if player still has health to attack.
