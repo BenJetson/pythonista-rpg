@@ -1,6 +1,10 @@
 # pythonista-rpg
 This repo contains the RPG game for the Pythonista project. 
 
+See our project on GitHub!
+https://github.com/bgodfr5236/pythonista-rpg
+
+
 -- Game Execution --
 
 To run the game, run the 'game_engine.py' file using the Python interpreter. 
