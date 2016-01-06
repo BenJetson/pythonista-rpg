@@ -1,3 +1,4 @@
+from __future__ import print_function
 from dictionaries import splashes
     # Gets the game splashes
 from dictionaries import rooms
@@ -5,28 +6,37 @@ from dictionaries import rooms
 from dictionaries import arsenal
     # Gets the weapon dictionaries.
 import random
+import sys
+
+
+python_version = sys.version_info
+    # Detects version of the interpereter the script is running on.
 
     
 # Sets initial values.
 
 playing = True
 
-# To-Do List:
-"""
-    - Functions
-        - Play - Holds main game logic - nothing else. 
-    - Output
-         Add descriptions for all rooms.
-        - Add ASCII art to intro/exit/start/death/game-over/etc.
-    - Rubric & Assignment Considerations
-        Entry Event  - https://s3.amazonaws.com/echo_files/20140507/_1399426771_pythonista_entry_event.pdf 
-        Project Rubtic - https://s3.amazonaws.com/echo_files/20140514/_1400074736_pythonista_rubric.pdf
-        - Get player name and use it somehow.
-        - Weapons need to have range? Ask faciliatator for clarity.
-        - Hook player w/ intro
-    - Repo on GitHub
-"""
+# -- Start Interpreter Version Detection and Adaptation -- #
 
+# Handles different versions of Python.
+#   Throws warning if using old versions.
+
+if python_version < (3,0):
+    
+    
+    def input(string):
+        response = raw_input(string)
+        return response
+    
+    print("WARNING! Your Python interpreter is running a version earlier than '3.0'!")
+    print("Patching code to work with old versions of Python..... done.")
+    print()
+    print("Press return to continue.")
+    input("> ")
+    
+# -- End Interpreter Version Detection and Adaptation -- #
+    
 def health_handler(initial, change, max=100, kill=False):
     health = initial + change
     health = max if health > max else health
@@ -69,7 +79,7 @@ def choose_weapon(weapons, monster_name):
         print()
         print("What do you choose?")
         choice = input("> ")
-        if choice.isnumeric() and 0 <=int(choice) <= len(id_key) and id_key[int(choice)-1] in weapons:
+        if choice.isdigit() and 0 <=int(choice) <= len(id_key) and id_key[int(choice)-1] in weapons:
             print("You chose the " + weapons[id_key[int(choice)-1]]['label'])
             print()
             return id_key[int(choice)-1]
@@ -254,7 +264,7 @@ def game_menu():
 3. Quit Game
 
 What would you like to do?""")
-        response = input(">")
+        response = input("> ")
         
         if response == '1':
             break
@@ -274,6 +284,8 @@ def get_name():
         
         print("Invalid input. Only letters are allowed in player names.")
             
+# def check_is_num()
+    
 splasher('title')
 player_name = get_name()
 print("Welcome to the game, " + player_name + ".")
@@ -296,7 +308,8 @@ while playing:
         
         # Handle health
         health = health_handler(health, current_room['health'])
-        current_room = rooms.room['graveyard'] if health <= 0 else current_room # Sends you to graveyard if you're dead.
+        # current_room = rooms.room['graveyard'] if health <= 0 else current_room # Sends you to graveyard if you're dead.
+        dead = True if health <= 0 else False
         
         # Handle adding weapons to arsenal
         if current_room['found_weapons'] != None:
@@ -305,6 +318,9 @@ while playing:
         # Outputs the greeting for the room and remaining health to the console.
         room_greeter(current_room, health)
         
+        if dead: # If you're dead, stops the game after reading the room greeting.
+            break
+            
         # If current room has battle, run battle handler.
         #   Otherwise, ask what room to proceed to.
         if current_room['battle']:
