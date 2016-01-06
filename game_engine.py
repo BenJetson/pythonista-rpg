@@ -22,7 +22,7 @@ playing = True
 # Handles different versions of Python.
 #   Throws warning if using old versions.
 
-if python_version < (3,0):
+if python_version < (3,0) and python_version >= (2,5):
     
     
     def input(string):
@@ -34,6 +34,21 @@ if python_version < (3,0):
     print()
     print("Press return to continue.")
     input("> ")
+elif python_version < (2,5):
+    print("""
+Unfortunately, this program is not compatible with systems running
+a Python Interpreter version less than 2.5, due to the lack of 
+ternary operations support.
+
+Install the latest version of the Python Interpreter and run
+this script using that version instead.
+
+Press return to exit.""")
+
+    raw_input("> ")
+    raise SystemExit
+    
+
     
 # -- End Interpreter Version Detection and Adaptation -- #
     
