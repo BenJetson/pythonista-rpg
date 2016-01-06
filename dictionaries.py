@@ -213,7 +213,8 @@ Congratulations! You have escaped from the facility where the terrorists were ke
         	"found_weapons" : None,
         	"health" : 0,
         	"battle" : False,
-        	"battle_props" : None
+        	"battle_props" : None,
+            "end_game" : True
     	},
 		
 	}

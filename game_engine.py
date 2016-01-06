@@ -126,32 +126,16 @@ def check_battle(player_health, monster_health):
     # Returns [still_battling, won]
     
     if player_health <= 0 and monster_health > 0:
-        # print(1)
-        # still_battling = False
-        # won = False
-        # break
         return [False, False]
     elif player_health > 0 and monster_health <= 0:
-        # print(2)
-        # still_battling = False
-        # won = True
-        # break
         return [False, True]
     elif player_health <= 0 and monster_health <= 0:
-        # print(3)
-        # still_battling = False
-        # won = False
-        # break
         return [False, False]
     else:
-        # still_battling = True
-        # won = None
         return [True, None]
         
     
 def battle(battle, weapons, health):
-    
-    # should return array of [whether won or not, health left] 
     
     battling = True
     usable_weapons = get_usable_weapons(weapons)
@@ -189,25 +173,6 @@ def battle(battle, weapons, health):
         # Monster is attacked with weapon
         monster_health = health_handler(monster_health, (abs(random.randint(weapon['damage']-5, weapon['damage']+5)) * -1), battle['monster_max_health'])
         
-        # print("battling in progress...", monster_health, health)
-        
-        
-        # if health <= 0 and monster_health > 0:
-            # print(1)
-            # won = False
-            # Battling = False
-            # break
-        # elif health > 0 and monster_health <= 0:
-            # print(2)
-            # won = True
-            # battling = False
-            # break
-        # elif health <= 0 and monster_health <= 0:
-            # print(3)
-            # won = False
-            # battling = False
-            # break
-            
         checks = check_battle(health, monster_health)
         battling = checks[0]
         won = checks[1]
@@ -215,6 +180,8 @@ def battle(battle, weapons, health):
         
         
     return [won, health]
+    
+    
 def next_room(option_text, options):
     
     while True:
@@ -323,7 +290,6 @@ while playing:
         
         # Handle health
         health = health_handler(health, current_room['health'])
-        # current_room = rooms.room['graveyard'] if health <= 0 else current_room # Sends you to graveyard if you're dead.
         dead = True if health <= 0 else False
         
         # Handle adding weapons to arsenal
@@ -353,7 +319,16 @@ while playing:
                 dead = True
         else:
             prev_room = current_room
+            
+            # Ends the game if the game is over.
+            try:
+                if current_room['end_game']:
+                    break
+            except:
+                pass
+                
             current_room = rooms.room[next_room(current_room['option_text'], current_room['next'])]
+            
             
         
     splasher('game_over')
